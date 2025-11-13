@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Andino Export - Business Intelligence</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f8f5f0; 
+            margin: 0; 
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #8B4513; 
+            text-align: center; 
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 { 
+            color: #D2691E; 
+            border-bottom: 3px solid #8B4513; 
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #A0522D;
+            margin-top: 25px;
+        }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            margin: 20px 0;
+            display: block;
+        }
+        .tech-badge { 
+            background: #8B4513; 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin: 5px;
+            font-size: 0.9em;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .results-table th, .results-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .results-table th {
+            background-color: #8B4513;
+            color: white;
+        }
+        .results-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .kpi-table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        .kpi-table th, .kpi-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .kpi-table th {
+            background-color: #D2691E;
+            color: white;
+        }
+        .highlight {
+            background-color: #fff8dc;
+            padding: 15px;
+            border-left: 4px solid #8B4513;
+            margin: 15px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #8B4513;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>☕ Café Andino Export</h1>
+        <p style="text-align: center; font-size: 1.2em; color: #666;"><strong>Solución de Business Intelligence para Exportaciones</strong></p>
+
+        <!-- DESCRIPCIÓN -->
+        <div class="section">
+            <h2>📌 Descripción y Contexto de la Empresa</h2>
+            <p>"Café Andino Export es una empresa cajamarquina fundada en el año 2000, dedicada a la producción y comercialización internacional de café tostado, sin descafeinar, molido, de la especie Arábica, siendo sus principales consumidores son cadenas de hoteles de la costa oeste de Estados Unidos; con la visión es ser uno de los principales líderes en exportaciones de café a nivel mundial.</p>
+            
+            <p>Este indicador mide la participación de Café Andino Export SAC en las exportaciones nacionales de la variedad Caturra de café Arábico, tostado, molido y sin descafeinar. La presentación del producto exportado es la solicitada internacionalmente (sacos de 60 kilogramos).</p>
+            
+            <p>La relación de la proporción está definida como "Toneladas de café Arábico-Caturra tostado, molido, sin descafeinar exportadas mensualmente por la empresa Café Andino Export S.A.C" entre las "Toneladas de café Arábico-Caturra, tostado, molido, sin descafeinar exportadas mensualmente por el Perú" (dato publicado periódicamente por el Ministerio de Agricultura) expresado de manera porcentual. Siendo esta, una métrica clave para monitorear su posicionamiento dentro del sector cafetalero exportador."</p>
+        </div>
+
+        <!-- OBJETIVOS -->
+        <div class="section">
+            <h2>🎯 Objetivos del Proyecto</h2>
+            <ul>
+                <li><strong>Integrar Fuentes de Datos de Exportación:</strong> Unificar la información de las exportaciones de café (propia y nacional del MINAGRI) proveniente de múltiples fuentes (sistemas internos, archivos externos, APIs gubernamentales).</li>
+                
+                <li><strong>Implementar la Automatización de Datos (ETL):</strong> Automatizar los procesos de extracción, transformación y carga (ETL) de los datos de exportación y su métrica de participación con Microsoft Fabric (o similar, como Azure Data Factory/Synapse), utilizando Python para transformaciones complejas, asegurando la calidad y periodicidad requerida.</li>
+                
+                <li><strong>Diseñar y Consolidar un Data Warehouse:</strong> Construir y documentar un Data Warehouse corporativo (que incluya código SQL para la creación de esquemas y tablas) optimizado para el cálculo del indicador clave ("INDICADOR MENSUAL DE PORCENTAJE DE PARTICIPACIÓN DE CAFÉ ANDINO EXPORT SAC EN LAS EXPORTACIONES NACIONALES DE LA VARIEDAD CATURRA DE CAFÉ ARÁBICO, TOSTADO, MOLIDO Y SIN DESCAFEINAR").</li>
+                
+                <li><strong>Desarrollar un Modelo de Datos de Negocio:</strong> Crear un modelo de datos robusto y escalable (incluyendo documentación de relaciones y medidas DAX) dentro del Data Warehouse/Power BI para respaldar el análisis confiable y estandarizado del posicionamiento.</li>
+                
+                <li><strong>Generar Inteligencia de Posicionamiento (KPIs):</strong> Diseñar y entregar un conjunto de reportes y un dashboard en Power BI que visualicen la evolución del KPI de participación en las exportaciones nacionales (con su business case y definición formal).</li>
+                
+                <li><strong>Optimizar la Gestión Operacional de Datos:</strong> Evaluar la implementación de PowerApps para la captura o validación operativa de datos que impacten directamente el cálculo de la métrica de exportación.</li>
+            </ul>
+        </div>
+
+        <!-- RESULTADOS CLAVE -->
+        <div class="section">
+            <h2>✨ Resultados Clave</h2>
+            <table class="results-table">
+                <tr>
+                    <th>Categoría</th>
+                    <th>Resultado Específico</th>
+                    <th>Beneficio Estratégico</th>
+                </tr>
+                <tr>
+                    <td><strong>Monitoreo Estratégico</strong></td>
+                    <td><strong>Visibilidad del KPI de Posicionamiento:</strong> Reportes en Power BI que muestran la participación en las exportaciones de café Caturra, actualizados automáticamente.</td>
+                    <td>Permite a la gerencia reaccionar rápidamente a los cambios del mercado y ajustar las estrategias de venta en la costa oeste de EE. UU. para <strong>alcanzar su visión de liderazgo global</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Eficiencia Operacional (ETL)</strong></td>
+                    <td><strong>Reducción del Tiempo de Cálculo del Indicador:</strong> Procesos ETL (Dataflows/Pipelines) automatizados en <strong>Microsoft Fabric y Python</strong>.</td>
+                    <td>Se elimina la dependencia de la recopilación y el cálculo manual de datos (tanto internos como del MINAGRI), liberando tiempo del personal clave para el <strong>análisis, no para el procesamiento</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Calidad y Consistencia del Dato</strong></td>
+                    <td><strong>Fuente Única de Verdad (Data Warehouse):</strong> Un modelo de datos centralizado y documentado.</td>
+                    <td>Asegura que todas las decisiones sobre exportación se basen en cifras validadas y consistentes, eliminando las disputas sobre <strong>qué tan "líderes" son realmente</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Gestión Operativa</strong></td>
+                    <td><strong>Agilidad en la Corrección de Datos:</strong> Implementación potencial de <strong>PowerApps</strong> para la gestión ágil de registros operativos.</td>
+                    <td>Capacidad para ingresar o corregir rápidamente datos primarios (ej. lotes de exportación), garantizando que el KPI refleje la <strong>situación real del mes en curso</strong> sin demoras.</td>
+                </tr>
+            </table>
+
+            <div class="highlight">
+                <h3>🎯 Monitoreo Estratégico y Liderazgo</h3>
+                <p><strong>Resultado Específico:</strong> Acceso instantáneo a la Visibilidad del KPI de Posicionamiento mediante dashboards y reportes dinámicos en Power BI, que muestran la participación real de Café Andino Export en las exportaciones nacionales de café Caturra, actualizados tras cada cierre de período.</p>
+                <p><strong>Beneficio Estratégico:</strong> Esto permite a la gerencia tener una capacidad de reacción estratégica, ajustando rápidamente los volúmenes y precios de exportación para las cadenas de hoteles en la costa oeste de EE. UU. y garantizando que las acciones comerciales estén directamente alineadas con su visión de ser líderes mundiales. Ya no es solo vender café, ¡es saber exactamente qué tan bien lo están haciendo comparado con la competencia!</p>
+            </div>
+
+            <div class="highlight">
+                <h3>⚡ Eficiencia Operacional y Rapidez de Datos</h3>
+                <p><strong>Resultado Específico:</strong> Reducción drástica del Tiempo de Cálculo del Indicador gracias a la implementación de pipelines ETL y dataflows automatizados con Microsoft Fabric y Python. Esto incluye la automatización de la ingesta y transformación tanto de los datos internos como de los datos del Ministerio de Agricultura (MINAGRI).</p>
+                <p><strong>Beneficio Estratégico:</strong> Se elimina el cuello de botella de la recopilación y el cálculo manual de datos. El personal clave se libera del trabajo tedioso y repetitivo, dedicando su tiempo al análisis de mercado y a la toma de decisiones estratégicas, en lugar de perder días armando la fórmula en una hoja de cálculo.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>🔒 Confianza y Consistencia del Dato</h3>
+                <p><strong>Resultado Específico:</strong> Creación de una Fuente Única de Verdad (Data Warehouse) con documentación de código SQL y un modelo de datos robusto (incluyendo relaciones y medidas DAX), que estandariza la definición de la "Tonelada exportada".</p>
+                <p><strong>Beneficio Estratégico:</strong> Asegura que todo el equipo, desde operaciones hasta la alta gerencia, trabaje con las mismas cifras validadas y consistentes. Esto es crucial para la credibilidad interna y externa, eliminando cualquier debate sobre la precisión de la métrica de liderazgo.</p>
+            </div>
+        </div>
+
+        <!-- SOLUCIÓN CLOUD -->
+        <div class="section">
+            <h2>☁️ Solución de Negocio Cloud con Microsoft Fabric y Power BI</h2>
+            <p>El proyecto de Café Andino Export implementa una solución robusta de Inteligencia de Mercado diseñada para integrar las cifras internas de exportación con la data nacional (MINAGRI). El objetivo es automatizar de manera eficiente el cálculo de su indicador clave de participación, proporcionando una base de datos confiable y escalable para la toma de decisiones estratégicas. Esta arquitectura se centra en garantizar la precisión de la métrica que define su camino hacia el liderazgo global.</p>
+            
+            <h3>Componentes Clave de la Arquitectura:</h3>
+            <p><strong>🧱 Microsoft Fabric Warehouse y Data Factory:</strong> El motor principal. Se encarga de la ingestión de datos (internos y externos), su rigurosa transformación (incluyendo automatizaciones en Python) y la consolidación. Su función es calcular la proporción exacta de exportación de Café Andino Export frente al total nacional.</p>
+            
+            <p><strong>⚙️ Bases de Datos Estructuradas (SQL):</strong> El repositorio de origen para los datos internos de Café Andino (volúmenes de Caturra, fechas de envío, etc.). Garantiza que los datos de la empresa sean registrados con estructura y calidad, listos para ser consumidos por Fabric.</p>
+            
+            <p><strong>📊 Power BI:</strong> La cara del proyecto. Se utiliza para el análisis de la información de negocio y, crucialmente, para la creación del Dashboard de Posicionamiento Competitivo. Aquí es donde el KPI de participación se visualiza de forma clara y accionable para la gerencia.</p>
+        </div>
+
+        <!-- SOLUCIÓN TECNOLÓGICA -->
+        <div class="section">
+            <h2>🧰 Solución Tecnológica</h2>
+            <p>Este proyecto implementa una solución de Inteligencia de Negocio y Benchmarking de Mercado robusta, utilizando herramientas de Microsoft enfocadas en la centralización, procesamiento y visualización de datos:</p>
+            
+            <p><strong>🧱 Microsoft Fabric:</strong> Permite la integración, Transformación y Consolidación de Datos (ETL/ELT): Centraliza la data interna y externa (MINAGRI) y ejecuta la lógica de negocio, incluyendo las automatizaciones en Python, para calcular el KPI de participación.</p>
+            
+            <p><strong>⚙️ Bases de Datos SQL:</strong> Permite el almacenamiento Estructurado y Confiable: Repositorio de alto rendimiento para los datos transaccionales internos de Café Andino Export, asegurando una fuente de origen limpia.</p>
+            
+            <p><strong>📊 Power BI:</strong> Permite el análisis Interactivo y Visualizaciones Estratégicas: Capa de presentación para el dashboard de Posicionamiento Competitivo y el análisis del KPI de participación, facilitando la toma de decisiones gerenciales.</p>
+        </div>
+
+        <!-- ARQUITECTURA -->
+        <div class="section">
+            <h2>🏗️ Diagrama de la Arquitectura del Proyecto</h2>
+            <img src="media/diagrama-arquitectura.png" alt="Diagrama">
+            
+            <p>La arquitectura de datos de Café Andino Export se estructura en capas bien definidas, integrando fuentes de datos, procesos ETL robustos y herramientas de análisis líderes de Microsoft Cloud. Esta solución está diseñada para ofrecer una plataforma completa, escalable y orientada a la medición precisa del posicionamiento competitivo en las exportaciones de café Arábica-Caturra.</p>
+            
+            <h3>🧩 Componentes de la Arquitectura:</h3>
+            <p><strong>• Data Sources (Fuentes de Datos):</strong> Los datos provienen de dos fuentes principales: los registros transaccionales internos de Café Andino Export (volúmenes de Caturra exportados) y los datos de exportación nacional publicados por el Ministerio de Agricultura (MINAGRI). Ambos conjuntos de datos se integran inicialmente en la capa de datos relacional para su consolidación.</p>
+            
+            <p><strong>• Data Layer (Capa de Datos):</strong> Centraliza toda la información, interna y externa, en una base de datos relacional (SQL). Esta capa asegura un almacenamiento estructurado, confiable y de alto rendimiento en la nube, sirviendo como la fuente de origen única y limpia para los procesos de transformación.</p>
+            
+            <p><strong>• ETL Layer (Capa ETL):</strong> Desarrollada con Pipelines y Dataflows dentro de Microsoft Fabric, automatiza el flujo de datos hacia el Data Warehouse. Esta capa es fundamental, ya que es donde se ejecuta la lógica de negocio para:</p>
+            <ul>
+                <li>Limpieza y estandarización de datos.</li>
+                <li>Cálculo de la métrica clave: la proporción porcentual de las exportaciones de Café Andino frente al total nacional.</li>
+                <li>Incorporar Notebooks en Python para ejecutar transformaciones complejas y validaciones de datos antes de la carga final.</li>
+            </ul>
+            
+            <p><strong>• Data Warehouse Layer (Capa de Almacenamiento):</strong> Consolida los datos ya transformados y listos para el análisis dentro de Microsoft Fabric Data Warehouse. Esta capa implementa el modelo de datos dimensional y las medidas de negocio (DAX) necesarias para optimizar la velocidad de consulta y la generación de reportes confiables y estandarizados.</p>
+            
+            <p><strong>• Presentation Layer (Capa de Presentación):</strong> Ofrece reportes y dashboards altamente interactivos en Power BI Service. Esta capa facilita el análisis de posicionamiento mediante visualizaciones en tiempo real del KPI de participación, esencial para la toma de decisiones estratégicas de la gerencia.</p>
+            
+            <p><strong>• User Access (Acceso de Usuario):</strong> La gestión de accesos y la seguridad se define según roles específicos dentro de Azure y Power BI, asegurando que solo los usuarios autorizados tengan acceso a la información estratégica.</p>
+        </div>
+
+        <!-- MODELO DE DATOS -->
+        <div class="section">
+            <h2>📐 Modelo de Datos en Azure SQL</h2>
+            <img src="media/modelo-dato-sql.png" alt="Modelo de Datos">
+            
+            <p>Las tablas que definen la estructura de datos para medir el posicionamiento en el mercado de exportación son:</p>
+            
+            <p><strong>📈 Ventas por Producto (tb_ventas_x_producto):</strong> Tabla de Hechos Central. Registra la métrica fundamental para el KPI: la cantdidad_ton (Toneladas de Café Arábica-Caturra exportadas por Café Andino) y el precio_x_ton_facturado. Se enlaza con las Dimensiones tb_ventas y tb_producto.</p>
+            
+            <p><strong>💰 Mercado Mensual (tb_mercado_mensual):</strong> Tabla de Hechos Clave para el KPI. Contiene los datos macroeconómicos del sector, específicamente la mercado_mensual_cantidad_tonelada (Toneladas totales exportadas por Perú, dato MINAGRI) y el precio promedio. Es esencial para el denominador del KPI de participación.</p>
+            
+            <p><strong>📅 Calendario (Calendario):</strong> Dimensión de Tiempo. Contiene la granularidad de tiempo (día, mes, año) necesaria para el análisis y permite relacionar los hechos (tb_ventas_x_producto y tb_mercado_mensual) para realizar comparaciones mensuales precisas.</p>
+            
+            <p><strong>📦 Producto (tb_producto):</strong> Dimensión Esencial. Define el producto clave (Café Arábica-Caturra tostado, molido, sin descafeinar). Permite filtrar y segmentar las ventas para asegurar que el KPI solo incluya la variedad específica.</p>
+            
+            <p><strong>👤 Clientes (tb_clientes):</strong> Dimensión del Consumidor. Centraliza los datos de los clientes internacionales (cadenas de hoteles de la costa oeste de EE. UU.) e incluye datos de ubicación (pais_id, estado_nombre), permitiendo segmentar y analizar la penetración en mercados específicos.</p>
+            
+            <p><strong>🚢 Puertos (tb_puertos):</strong> Dimensión de Logística. Detalla los puertos de destino, crucial para analizar la eficiencia de la cadena de suministro y vincular las ventas con la dimensión geográfica.</p>
+            
+            <p>Este modelo relacional en SQL permite que los procesos ETL de Microsoft Fabric tomen las Toneladas de Venta (numerador) y las Toneladas del Mercado (denominador), y las consoliden en el Fabric Data Warehouse para su posterior análisis en Power BI.</p>
+        </div>
+
+        <!-- CAPA DE DATOS -->
+        <div class="section">
+            <h2>💾 CAPA DE DATOS</h2>
+            <p>La Capa de Datos constituye la fuente de verdad estructurada para el proyecto, alojando tanto los registros transaccionales internos de Café Andino Export como los datos de mercado consolidados (MINAGRI). Su diseño relacional optimiza la integridad y el consumo eficiente por parte de la Capa ETL (Microsoft Fabric).</p>
+            
+            <h3>1. Documentación del Código SQL</h3>
+            <p>El modelo de datos se implementa en una base de datos relacional (SQL) bajo el esquema DVG2. La documentación asociada es la siguiente:</p>
+            
+            <p><strong>A. Creación de Tablas (CREATE TABLE)</strong></p>
+            <p>El código DDL (Data Definition Language) de cada una de las 16 tablas del esquema ha sido generado y se adjunta. Este código define la estructura, los tipos de datos y las restricciones de integridad.</p>
+            
+            <p><strong>Tipos de Tablas:</strong></p>
+            <ul>
+                <li><strong>Tablas de Hechos:</strong> tb_ventas_x_producto y tb_mercado_mensual, estas tablas contienen las métricas primarias: Toneladas vendidas por la empresa (cantdidad_ton) y Toneladas totales del mercado (mercado_mensual_cantidad_tonelada).</li>
+                <li><strong>Tablas de Dimensiones:</strong> Calendario, tb_clientes, tb_producto, tb_paises, tb_puertos, otras que proveen el contexto para el análisis.</li>
+            </ul>
+            
+            <p><strong>B. Definición de Relaciones (Claves Primarias y Foráneas)</strong></p>
+            <p>Las relaciones se definen siguiendo el estándar del modelado relacional para asegurar la integridad referencial y facilitar la navegación de los datos.</p>
+            
+            <ul>
+                <li><strong>Claves Primarias (PRIMARY KEY):</strong> Se ha definido una clave primaria en cada tabla (ej., [date] en Calendario, [venta_id] en tb_ventas) para garantizar la unicidad de cada registro.</li>
+                <li><strong>Claves Foráneas (FOREIGN KEY):</strong> Se utilizan para establecer las relaciones y dependencias entre tablas, previniendo datos huérfanos. Por ejemplo, tb_ventas se relaciona con Calendario a través de fecha_de_venta, y tb_ventas_x_producto se relaciona con tb_ventas a través de venta_id.</li>
+            </ul>
+            
+            <p><strong>C. Inserción de Datos (INSERT INTO)</strong></p>
+            <p>Se adjuntan los scripts de inserción de datos (INSERT INTO):</p>
+            
+            <ul>
+                <li><strong>Datos Maestros/Dimensionales:</strong> Scripts de carga inicial para tablas pequeñas y estáticas (ej., tb_tipo_cliente, tb_tipo_colaborador, tb_paises).</li>
+                <li><strong>Datos Transaccionales/Hechos:</strong> La inserción de los datos transaccionales (tablas tb_ventas_x_producto y tb_mercado_mensual) se gestiona periódicamente mediante la Capa ETL (Microsoft Fabric), la cual carga los datos pre-procesados desde las fuentes de origen.</li>
+            </ul>
+        </div>
+
+        <!-- CAPA ETL -->
+        <div class="section">
+            <h2>🔄 CAPA ETL (Extracción, Transformación y Carga)</h2>
+            <p>Esta capa, gestionada por Microsoft Fabric, es la encargada de garantizar la calidad, consistencia y periodicidad de los datos, calculando la métrica de participación antes de almacenarla.</p>
+            
+            <h3>A. Dataflows y Pipelines</h3>
+            <p>Se utilizan Pipelines y Dataflows de Fabric para orquestar y automatizar el flujo de datos mensual.</p>
+            
+            <ul>
+                <li><strong>Extracción (E):</strong> Se conecta a la Capa de Datos SQL (DVG2) para extraer las transacciones de ventas (tb_ventas_x_producto) y la data de mercado (tb_mercado_mensual) del mes anterior.</li>
+                <li><strong>Transformación (T) - Llamada a Python:</strong> Invoca un Notebook de Python para ejecutar la lógica de negocio y calcular el KPI de participación.</li>
+                <li><strong>Carga (L):</strong> Carga los datos transformados (incluyendo el KPI calculado) en el Fabric Data Warehouse.</li>
+            </ul>
+            
+            <h3>B. Automatizaciones en Python (Notebooks)</h3>
+            <p>Se implementa un Python Notebook dentro de Fabric para la fase crítica de la transformación de datos, asegurando la precisión del benchmarking.</p>
+            
+            <table class="results-table">
+                <tr>
+                    <th>Métrica Calculada</th>
+                    <th>Lógica de Python</th>
+                </tr>
+                <tr>
+                    <td><strong>Toneladas_Café_Andino</strong></td>
+                    <td>Agregación de la columna cantdidad_ton de tb_ventas_x_producto, filtrada por el producto Café Arábica-Caturra.</td>
+                </tr>
+                <tr>
+                    <td><strong>Porcentaje_Participación</strong></td>
+                    <td>Fórmula del KPI: (Toneladas_Café_Andino / mercado_mensual_cantidad_tonelada) × 100</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CAPA ALMACENAMIENTO -->
+        <div class="section">
+            <h2>🏪 CAPA DE ALMACENAMIENTO (Data Warehouse)</h2>
+            <p>Esta capa consolida los datos transformados y crea el entorno analítico optimizado para Power BI, siguiendo el diseño del modelo DVG2.</p>
+            
+            <h3>A. Modelo de Datos Final</h3>
+            <p>El Fabric Data Warehouse aloja un modelo dimensional de estrella/copo de nieve optimizado. Las relaciones se establecen con cardinalidad uno a muchos (1:N), asegurando que las dimensiones filtren correctamente a las tablas de hechos:</p>
+            
+            <ul>
+                <li><strong>Centralidad en los Hechos:</strong> La tabla de hechos tb_ventas_x_producto está vinculada a las dimensiones tb_ventas y tb_producto.</li>
+                <li><strong>Conexión Clave del KPI:</strong> La tabla tb_mercado_mensual se vincula directamente a la tabla Calendario (por mercado_mensual_fecha ↔ date), permitiendo comparar las ventas de Café Andino con las cifras del mercado peruano en el tiempo.</li>
+            </ul>
+            
+            <h3>B. Medidas Clave Creadas en el Modelo (DAX):</h3>
+            <p>Se utilizan expresiones DAX (Data Analysis Expressions) para calcular métricas de alto nivel en el modelo, asegurando que todos los reportes usen las mismas definiciones:</p>
+            
+            <ul>
+                <li><strong>Total Toneladas Vendidas (CAE):</strong> SUM de cantdidad_ton</li>
+                <li><strong>Toneladas Mercado (MINAGRI):</strong> SUM de mercado_mensual_cantidad_tonelada</li>
+                <li><strong>KPI - Participación Mensual (%):</strong> [Total Toneladas Vendidas] / [Toneladas Mercado] * 100</li>
+                <li><strong>Costo por Tonelada:</strong> [Total Costo] / [Total Toneladas Vendidas]</li>
+            </ul>
+        </div>
+
+        <!-- CAPA PRESENTACIÓN -->
+        <div class="section">
+            <h2>📊 CAPA DE PRESENTACIÓN (Power BI)</h2>
+            <p>Esta es la cara visible de todo el esfuerzo de datos, diseñada para entregar inteligencia de posicionamiento accionable a la gerencia de Café Andino Export.</p>
+            
+            <h3>A. Business Case (Caso de Negocio)</h3>
+            
+            <div class="highlight">
+                <p><strong>Problema Actual (Junio 2025):</strong> El KPI de Participación se encuentra en 34% (Semáforo Amarillo), con una brecha del 5% respecto al objetivo. Esta brecha representa la pérdida potencial de ~800 toneladas mensuales, equivalentes a $3.12 millones en facturación.</p>
+                
+                <p><strong>Objetivo Estratégico (Junio 2026):</strong> Alcanzar un valor igual o superior a 39% (Semáforo Verde) en el KPI de participación.</p>
+                
+                <p><strong>Estrategia (Costo: $1.661 Millones):</strong> 1. Posicionamiento y Fidelización (Costa Oeste EE. UU. a través de certificaciones y experiencias cafetaleras) y 2. Penetración de Mercado (Plan de Marketing, ferias internacionales y publicidad).</p>
+                
+                <p><strong>Impacto Económico (ROI):</strong> Facturación Adicional Estimada: $260 mil/mes al cumplir el objetivo. Retorno Anual Post-Objetivo: $37.44 Millones (durante el primer año).</p>
+                
+                <p><strong>Viabilidad de Inversión:</strong> La inversión de $1.661 millones es altamente rentable, evidenciada por un Costo/Beneficio de 1.88 y un Retorno sobre la Inversión (ROI) del 87.84%.</p>
+                
+                <p><strong>Justificación:</strong> El crecimiento y el liderazgo solo pueden ser medidos contra el mercado total. Este proyecto resuelve la incapacidad actual de obtener esta métrica de forma automática y oportuna, permitiendo la toma de decisiones estratégicas de precios, volúmenes de producción y enfoque geográfico (EE. UU. Costa Oeste).</p>
+            </div>
+            
+            <h3>B. Definición del KPI y Rangos de Desempeño</h3>
+            
+            <p><strong>1. KPI:</strong></p>
+            <p><strong>Nombre del KPI:</strong> Indicador mensual de porcentaje de participación de Café Andino Export SAC en las exportaciones nacionales de la variedad caturra de café arábico, tostado, molido y sin descafeinar</p>
+            
+            <p><strong>Definición:</strong> Mide la proporción de las toneladas de café Arábica-Caturra tostado, molido, sin descafeinar, exportadas por Café Andino Export, respecto al total nacional (Perú) para esa misma variedad y presentación, expresado en porcentaje.</p>
+            
+            <p><strong>Fórmula:</strong></p>
+            <img src="media/formula-kpi.png" alt="Fórmula">
+            
+            <p><strong>Fuente del Numerador:</strong> tb_ventas_x_producto (columna cantdidad_ton)</p>
+            <p><strong>Fuente del Denominador:</strong> tb_mercado_mensual (columna mercado_mensual_cantidad_tonelada)</p>
+            <p><strong>Unidad:</strong> Porcentual.</p>
+            <p><strong>Periodicidad:</strong> Mensual.</p>
+            
+            <p><strong>2. Rangos de Semáforo y Alertas (Alerta Temprana):</strong></p>
+            <table class="kpi-table">
+                <tr>
+                    <th>Rango de KPI</th>
+                    <th>Semáforo</th>
+                    <th>Interpretación</th>
+                </tr>
+                <tr>
+                    <td>>= 39%</td>
+                    <td style="background-color: #90EE90;">Verde (Meta)</td>
+                    <td>Liderazgo sólido, superación del objetivo estratégico.</td>
+                </tr>
+                <tr>
+                    <td>>= 30% a <= 39%</td>
+                    <td style="background-color: #FFFF99;">Amarillo (Alerta)</td>
+                    <td>Nivel actual (34%). Requiere ajustes inmediatos para anular la brecha del 5%.</td>
+                </tr>
+                <tr>
+                    <td><= 30%</td>
+                    <td style="background-color: #FFB6C1;">Rojo (Peligro)</td>
+                    <td>Pérdida de competitividad y amenaza grave de pérdida de participación de mercado.</td>
+                </tr>
+            </table>
+            
+            <p><strong>3. Impacto de Desviación (La Relevancia del 1%)</strong></p>
+            <p>El reporte visualizará la sensibilidad del KPI con los siguientes datos:</p>
+            <p>Un aumento de 1% en el KPI representa:</p>
+            <ul>
+                <li><strong>Volumen Adicional:</strong> 154 toneladas exportadas.</li>
+                <li><strong>Facturación Adicional:</strong> $602 mil dólares al mes.</li>
+            </ul>
+            
+            <h3>C. Dashboard y Reporte</h3>
+            <p>El archivo de Power BI contendrá vistas principales:</p>
+            
+            <p><strong>Dashboard Ejecutivo (Vista Rápida):</strong></p>
+            <ul>
+                <li><strong>Visualización Central:</strong> Un medidor (gauge) que muestra el KPI - Participación Mensual (%) del último período.</li>
+                <li><strong>Tendencia:</strong> Gráfico de línea que muestra la evolución del KPI en los últimos 12 meses.</li>
+                <li><strong>Segmentación Geográfica:</strong> Mapa destacando la participación por estado en la Costa Oeste de EE. UU. (utilizando tb_clientes y tb_paises).</li>
+            </ul>
+            
+            <p><strong>Reporte de Análisis (Vista Detallada):</strong></p>
+            <ul>
+                <li><strong>Página 1:</strong> Análisis de tendencias y comparativa histórica</li>
+                <li><strong>Página 2:</strong> Segmentación por cliente y región</li>
+                <li><strong>Página 3:</strong> Análisis de brechas y oportunidades de crecimiento</li>
+            </ul>
+        </div>
+
+        <!-- TECNOLOGÍAS -->
+        <div class="section">
+            <h2>🛠️ Tecnologías Utilizadas</h2>
+            <div>
+                <span class="tech-badge">Microsoft Fabric</span>
+                <span class="tech-badge">Power BI</span>
+                <span class="tech-badge">Azure SQL</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">DAX</span>
+                <span class="tech-badge">ETL/ELT</span>
+                <span class="tech-badge">Data Warehouse</span>
+                <span class="tech-badge">Power Apps</span>
+                <span class="tech-badge">Azure Data Factory</span>
+                <span class="tech-badge">SQL</span>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Proyecto Café Andino Export SAC - Business Intelligence</strong></p>
+            <p>📅 Año: 2025 | 🏢 Cajamarca, Perú | ☕ Especialistas en Exportación de Café Arábica</p>
+        </footer>
+    </div>
+</body>
+
+</html>
+
+
